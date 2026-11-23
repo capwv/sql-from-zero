@@ -220,9 +220,45 @@ textarea{width:100%;background:#040913;color:#d6e6ff;border:1px solid var(--bord
 
 footer a{color:var(--accent)}
 .content,.lesson{max-width:100%}.content{width:100%}pre{max-width:100%}.lesson p,.lesson li,.opt{overflow-wrap:anywhere}.lesson table{max-width:100%}
+
+/* SAMS-MIS visual language: ink-black surfaces, blue glass and quiet geometry. */
+:root{--bg:#06070a;--panel:#0a0c12;--panel2:#101522;--border:rgba(255,255,255,.10);--text:#f5f7fa;--muted:#98a1b3;--accent:#3b82f6;--accent2:#7aa7ff;--code-bg:#070a11}
+body{position:relative;isolation:isolate;background-image:radial-gradient(820px 420px at 50% -12%,rgba(59,130,246,.20),transparent 68%),radial-gradient(560px 340px at 88% 8%,rgba(139,92,246,.10),transparent 70%),radial-gradient(560px 340px at 8% 22%,rgba(56,189,248,.08),transparent 70%);background-attachment:fixed}
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(760px 360px at 50% -10%,rgba(59,130,246,.11),transparent 70%)}
+.bg-shapes{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.topbar,.layout,.menu-toggle{position:relative;z-index:1}
+.bg-shapes i{position:absolute;top:18%;left:-100px;width:280px;height:280px;border:1px solid rgba(59,130,246,.17);transform:rotate(30deg);animation:shapeFloat 14s ease-in-out infinite alternate}
+.bg-shapes i:nth-child(2){top:55%;left:auto;right:-130px;width:390px;height:390px;border-radius:50%;border-color:rgba(122,167,255,.15);animation-delay:-5s}
+.bg-shapes i:nth-child(3){top:72%;left:42%;width:110px;height:110px;border-color:rgba(56,189,248,.18);animation-delay:-9s}
+@keyframes shapeFloat{to{transform:translateY(-22px) rotate(44deg)}}
+.topbar{background:rgba(6,7,10,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-inner{max-width:1152px;padding:10px 16px;gap:16px}
+.logo{font-size:1.08rem;letter-spacing:.02em}.brand-mark{width:48px;filter:drop-shadow(0 8px 24px rgba(59,130,246,.2))}
+.progress-wrap{max-width:360px}.progress-bar{background:rgba(255,255,255,.08)}.progress-fill{background:linear-gradient(90deg,#3b82f6,#38bdf8);box-shadow:0 0 16px rgba(59,130,246,.35)}
+.links-bar{gap:10px;padding:8px 12px;border-top:1px solid rgba(255,255,255,.06);background:rgba(6,7,10,.28)}
+.links-bar a,.links-bar button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:0 12px;border:1px solid transparent;border-radius:11px;color:#98a1b3;font:700 12px Cairo,sans-serif;text-decoration:none;background:transparent;transition:background .2s,color .2s,border-color .2s}
+.links-bar a:hover,.links-bar button:hover{color:#fff;background:rgba(59,130,246,.12);border-color:rgba(122,167,255,.24)}
+.links-bar .community-link{color:#e9f1ff;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.14);white-space:nowrap}
+.links-bar .community-link:hover{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.hero{position:relative;overflow:hidden;text-align:center;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.10);border-radius:20px;box-shadow:0 22px 60px -38px rgba(59,130,246,.4)}
+.hero:before{content:"";position:absolute;top:0;right:10%;left:10%;height:2px;background:linear-gradient(to left,transparent,#7aa7ff,transparent);opacity:.75}
+.hero-logo{filter:drop-shadow(0 18px 44px rgba(59,130,246,.28))}
+.hero-pill{display:inline-block;padding:5px 13px;border-radius:999px;background:rgba(59,130,246,.10);border:1px solid rgba(122,167,255,.32);color:#9dc0ff;font-weight:800}
+.hero h2{color:#f5f7fa;font-weight:900}.hero p{color:#b8c0cf}.hero-hint{color:#9dc0ff!important}
+.lesson,.sidebar,.quiz-box,.exercise-box,.quiz-q,.exercise{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border-color:rgba(255,255,255,.10);border-radius:18px;box-shadow:0 18px 45px -38px rgba(59,130,246,.32)}
+.lesson h3{color:#9dc0ff}.nav-item.active{background:rgba(59,130,246,.12);border-color:rgba(122,167,255,.45);color:#f5f7fa}
+.nav-item:hover{background:rgba(255,255,255,.06)}.nav-item.done .check{background:#3ddc84;border-color:#3ddc84}
+pre,textarea{border-color:rgba(255,255,255,.12);background:#070a11}pre .k{color:#7aa7ff}
+.note{background:rgba(59,130,246,.08);border-color:rgba(122,167,255,.25)}.note b{color:#9dc0ff}
+.cta{background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:12px;box-shadow:0 8px 30px rgba(59,130,246,.2)}
+footer{position:relative;border-top:1px solid rgba(255,255,255,.08);padding-top:24px!important}
+@media(max-width:430px){.links-bar{gap:4px;padding-inline:6px}.links-bar a,.links-bar button{padding:0 8px;font-size:11px}.links-bar .community-link span{display:none}.topbar-inner{padding-inline:12px}.brand-mark{width:40px}}
+@media(prefers-reduced-motion:reduce){.bg-shapes i{animation:none}}
+
 </style>
 </head>
 <body>
+<div class="aurora" aria-hidden="true"></div>
 <div class="bg-shapes" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <header class="topbar">
@@ -233,7 +269,7 @@ footer a{color:var(--accent)}
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
   </div>
-<nav class="links-bar" aria-label="روابط الموقع"><button id="home-link">الرئيسية</button><button id="lab-link">معمل SQL</button><a href="https://capwv.github.io/ats-cv-builder/" target="_blank" rel="noopener">سيرة: اعمل CV</a><a href="https://infinity-team-1-iua.github.io/IUA-SAMS/" target="_blank" rel="noopener">SAMS: الملخصات</a></nav></header>
+<nav class="links-bar" aria-label="روابط الموقع"><button id="home-link">الرئيسية</button><button id="lab-link">معمل SQL</button><a class="community-link" href="https://infinity-team-1-iua.github.io/IUA-SAMS/" target="_blank" rel="noopener" aria-label="Our Community">👥 <span>Our Community</span> ↗</a></nav></header>
 
 <div class="layout">
   <aside class="sidebar" id="sidebar">
