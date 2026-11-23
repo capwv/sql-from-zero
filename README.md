@@ -13,7 +13,7 @@ Open the SQL lab in the navigation. Each run starts from a fresh copy of the syn
 The capstone uses 12 synthetic sales orders, with explicit data grain, checks, expected totals, monthly growth and an example project structure. This is a learning resource, not a claim that the learner has completed a portfolio project.
 
 ## Technical notes
-`index.html` is self-contained, including sql.js and its WebAssembly binary. Google Fonts are optional; system fonts work as fallback. Open the HTML directly or serve it with any static server. Large or unbounded SQL queries can block the tab, so use this small lab for learning only.
+`index.html` includes sql.js and loads the adjacent `5-sql-wasm.wasm` file. Google Fonts are optional; system fonts work as fallback. Open the HTML directly or serve it with any static server. Large or unbounded SQL queries can block the tab, so use this small lab for learning only.
 
 SQL reference: https://www.sqlite.org/lang_select.html · https://www.sqlite.org/windowfunctions.html · https://www.sqlite.org/lang_expr.html
 
