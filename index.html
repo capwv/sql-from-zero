@@ -458,7 +458,7 @@ CURRICULUM.push(
     { type: 'code', sql: "-- موظفين المبيعات اللي مرتبهم أكبر من 7000\nSELECT name\nFROM employees\nWHERE department = 'Sales'\n  AND salary > 7000;" },
     { type: 'p', text: '`AND` معناها لازم الشرطين يتحققوا مع بعض. `OR` معناها يكفي واحد منهم:' },
     { type: 'code', sql: "-- اللي في القاهرة أو الإسكندرية\nSELECT name, city\nFROM employees\nWHERE city = 'Cairo'\n   OR city = 'Alexandria';" },
-    { type: 'note', warn: true, text: 'خد بالك من الأولوية: `AND` بتتنفذ قبل `OR`، زي الضرب والجمع بالظبط. لو دمجتهم استخدم أقواس عشان تضمن المعنى: `WHERE dept = \'Sales\' AND (city = \'Cairo\' OR city = \'Giza\')`' },
+    { type: 'note', warn: true, text: 'خد بالك من الأولوية: `AND` بتتنفذ قبل `OR`، زي الضرب والجمع بالظبط. لو دمجتهم استخدم أقواس عشان تضمن المعنى: `WHERE department = \'Sales\' AND (city = \'Cairo\' OR city = \'Giza\')`' },
     { type: 'h', text: 'IN: بدل ما تعمل OR كتير' },
     { type: 'code', sql: "SELECT name, city\nFROM employees\nWHERE city IN ('Cairo', 'Alexandria', 'Giza');" },
     { type: 'h', text: 'BETWEEN: في مدى معين' },
@@ -512,7 +512,7 @@ CURRICULUM.push(
   blocks: [
     { type: 'p', text: 'قاعدة البيانات مش بتضمنلك أي ترتيب للصفوف. عشان كده لو الترتيب مهم (وغالباً مهم)، لازم تطلبه صراحة بـ `ORDER BY`:' },
     { type: 'code', sql: '-- الموظفين مترتبين بالمرتب من الأعلى للأقل\nSELECT name, salary\nFROM employees\nORDER BY salary DESC;' },
-    { type: 'p', text: '`DESC` معناها تنازلي (من الكبير للصغير)، و `ASC` معناها تصاعدي (من الصغير للكبير). لو مخطتش حاجة، الافتراضي `ASC`.' },
+    { type: 'p', text: '`DESC` معناها تنازلي (من الكبير للصغير)، و `ASC` معناها تصاعدي (من الصغير للكبير). لو مكتبتش حاجة، الافتراضي `ASC`.' },
     { type: 'h', text: 'الترتيب بأكتر من عمود' },
     { type: 'code', sql: '-- رتب بالقسم أبجدياً، وجوه كل قسم رتب بالمرتب تنازلي\nSELECT name, department, salary\nFROM employees\nORDER BY department ASC, salary DESC;' },
     { type: 'p', text: 'ده بيرتب بالأولوية: القسم الأول، ولو فيه تعادل في القسم يفصل بالمرتب.' },
