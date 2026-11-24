@@ -87,7 +87,8 @@
     var out=new Uint8Array(len),p=0;parts.forEach(function(u){out.set(u,p);p+=u.length});dl(new Blob([out],{type:'application/pdf'}),fname('pdf'))}
   function render(){var n=document.getElementById('iua-name').value;document.getElementById('iua-name').style.borderColor='';set(KN,n);draw(n);links(n.trim()||'Your Name')}
   function shut(){ov.style.display='none';document.documentElement.style.overflow=''}
-  function open(){ov.style.display='flex';document.documentElement.style.overflow='hidden';var i=document.getElementById('iua-name');i.value=get(KN)||'';var go=function(){render()};
+  function accountName(){try{var a=JSON.parse(get('iua-acct')||'null'),u=a&&a.user;return u?String(u.name||u.username||'').trim():''}catch(e){return''}}
+  function open(){ov.style.display='flex';document.documentElement.style.overflow='hidden';var i=document.getElementById('iua-name');i.value=accountName();var go=function(){render()};
     (document.fonts&&document.fonts.load?Promise.all([document.fonts.load('700 80px Cairo'),document.fonts.load('400 24px Cairo'),document.fonts.load('800 84px Cairo')]).then(go,go):go());if(!i.value)i.focus()}
   function need(){var i=document.getElementById('iua-name');if(i.value.trim())return true;i.style.borderColor='#f87171';i.focus();return false}
   function bind(){fab.onclick=open;document.getElementById('iua-x').onclick=shut;document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.style.display==='flex')shut()});
@@ -101,4 +102,3 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
   window.__iuaCertPreview=function(){if(!get(KD))dateStr();open()};
 })();
-
