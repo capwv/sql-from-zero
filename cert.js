@@ -1,4 +1,5 @@
 /* Infinity University Activity - completion certificate (shared by all *-from-zero academies) */
+(function(){var s=document.currentScript;if(!s||window.__iuaLoad)return;window.__iuaLoad=1;var a=document.createElement('script');a.src='https://capwv.github.io/SAMS-Compass/academy.js';a.setAttribute('data-slug',s.getAttribute('data-slug')||'');document.head.appendChild(a)})();
 (function(){
   var S=document.currentScript; if(!S||window.__iuaCert) return; window.__iuaCert=1;
   var slug=S.getAttribute('data-slug'), course=S.getAttribute('data-course');
