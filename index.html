@@ -474,7 +474,7 @@ CURRICULUM.push(
   exercises: [
     { task: 'اكتب استعلام يجيب أسماء ومرتبات موظفي قسم IT', sql: "SELECT name, salary\nFROM employees\nWHERE department = 'IT';", why: 'WHERE بتحط بعد FROM مباشرة، والنص بين علامتي تنصيص مفردة.' },
     { task: 'اكتب استعلام يجيب الموظفين اللي مرتبهم بين 6000 و 9000 (بطريقتين: BETWEEN وبعلامات المقارنة)', sql: "-- بطريقة BETWEEN\nSELECT name, salary\nFROM employees\nWHERE salary BETWEEN 6000 AND 9000;\n\n-- بطريقة المقارنات\nSELECT name, salary\nFROM employees\nWHERE salary >= 6000 AND salary <= 9000;", why: 'الاتنين نفس النتيجة بالظبط، و BETWEEN بتشمل الطرفين. استخدم اللي يريحك، بس لازم تكون فاهم الاتنين عشان بتشوفهم في شغل ناس كتير.' },
-    { task: 'اكتب استعلام يجيب كل الموظفين ما عدا اللي في القاهرة', sql: "SELECT name, city\nFROM employees\nWHERE city != 'Cairo';\n\n-- أو بصيغة تانية نفس المعنى:\n-- WHERE city <> 'Cairo'", why: '!= و <> الاتنين معناهم "لا يساوي" وشتغالين في أغلب قواعد البيانات.' }
+    { task: 'اكتب استعلام يجيب كل الموظفين ما عدا اللي في القاهرة', sql: "SELECT name, city\nFROM employees\nWHERE city != 'Cairo';\n\n-- أو بصيغة تانية نفس المعنى:\n-- WHERE city <> 'Cairo'", why: '!= و <> الاتنين معناهم "لا يساوي" وشغالين في أغلب قواعد البيانات.' }
   ]
 }
 );
@@ -587,7 +587,7 @@ CURRICULUM.push(
     { type: 'code', sql: '-- متوسط المرتب في كل قسم\nSELECT department,\n       AVG(salary) AS avg_salary\nFROM employees\nGROUP BY department;' },
     { type: 'p', text: 'النتيجة 3 صفوف، صف لكل قسم: المبيعات 7250، و IT بـ 13500، و HR بـ 7000. لاحظ: ممكن تجمع بعمود من غير ما تعرضه، لكن عرضه هنا بيخلينا نعرف كل نتيجة بتخص أنهي قسم.' },
     { type: 'h', text: 'القاعدة الذهبية' },
-    { type: 'note', text: 'أي عمود في SELECT مش جوه دالة تجميعية، لازم يكون مكتوب في GROUP BY. عشان كده `SELECT name, AVG(salary)` من غير GROUP BY على name غير سليمة منطقياً من غير تجميع مناسب: قاعدة البيانات مش عارفة ترجع أنهي name مع المتوسط.' },
+    { type: 'note', text: 'أي عمود في SELECT مش جوه دالة تجميعية، لازم يكون مكتوب في GROUP BY. عشان كده `SELECT name, AVG(salary)` من غير GROUP BY غير سليمة منطقياً: قاعدة البيانات مش عارفة ترجع أنهي name مع المتوسط.' },
     { type: 'h', text: 'عد الموظفين في كل قسم ورتبهم' },
     { type: 'code', sql: 'SELECT department,\n       COUNT(*) AS emp_count,\n       SUM(salary) AS total_salary\nFROM employees\nGROUP BY department\nORDER BY emp_count DESC;' },
     { type: 'h', text: 'HAVING: الفلترة بعد التجميع' },
@@ -822,7 +822,7 @@ CURRICULUM.push(
     ]},
     { type: 'code', sql: "-- مثال لشكل التعليق في ملف الـ queries\n-- السؤال: أنهي 5 منتجات بتحقق أعلى إيراد؟\n-- النتيجة: المنتج الأول جاب 1.2M (23% من الإجمالي)\nSELECT product_name, SUM(revenue) AS total_revenue\nFROM sales\nGROUP BY product_name\nORDER BY total_revenue DESC\nLIMIT 5;" },
     { type: 'h', text: 'الخطوة 7: اربطه بالبروفايل' },
-    { type: 'p', text: 'بعد ما ترفع المشروع على GitHub، ضيفه على لينكدإن في قسم Projects مع وصف قصير فيه الأسئلة والنتايج، وابعته لمساعدك يظبطهولك. كده رحلة SQL قفلت: اتعلمت، اتدربت، وعندك دليل منشور.' },
+    { type: 'p', text: 'بعد ما ترفع المشروع على GitHub، ضيفه على لينكدإن في قسم Projects مع وصف قصير فيه الأسئلة والنتايج. ولو عندك منتور أو زميل بيفهم، ابعتله اللينك يراجعه. كده رحلة SQL قفلت: اتعلمت، اتدربت، وعندك دليل منشور.' },
     { type: 'note', text: 'نصيحة أخيرة: مشروع واحد محلل كويس ومتشرح في README أحسن من خمسة منسوخين. خلي الـ README يحكي قصة: السؤال ← الطريقة ← النتيجة ← إيه القرار اللي ممكن يتاخد منها.' }
   ],
   quiz: [
@@ -1429,7 +1429,7 @@ document.getElementById('run-sql').onclick=async()=>{
  engine=engine||await initSqlJs({locateFile:()=> '5-sql-wasm.wasm'});
  const db=new engine.Database();db.run(window.TRAINING_SQL);
  const result=db.exec(input.value);out.innerHTML='';
- if(!result.length)out.textContent='تم التنفيذ. أضف SELECT لعرض النتيجة. كل تشغيل يبدأ من بيانات التدريب الأصلية.';
+ if(!result.length)out.textContent='تم التنفيذ. ضيف SELECT عشان تعرض النتيجة. كل تشغيل يبدأ من بيانات التدريب الأصلية.';
  result.forEach(r=>{const wrap=document.createElement('div');wrap.className='table-scroll';const t=document.createElement('table');t.className='demo';const tr=document.createElement('tr');r.columns.forEach(x=>{const th=document.createElement('th');th.textContent=x;tr.appendChild(th);});t.appendChild(tr);r.values.slice(0,200).forEach(row=>{const tr=document.createElement('tr');row.forEach(x=>{const td=document.createElement('td');td.textContent=x===null?'NULL':String(x);tr.appendChild(td);});t.appendChild(tr);});wrap.appendChild(t);out.appendChild(wrap);const msg=document.createElement('p');msg.textContent=r.values.length+' صف'+(r.values.length>200?'، بنعرض أول 200 فقط':'');out.appendChild(msg);});db.close();
  }catch(e){out.textContent='راجع الاستعلام: '+e.message;}
 };
