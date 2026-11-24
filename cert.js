@@ -18,7 +18,7 @@
   '.iua-b.p{background:linear-gradient(135deg,#2563eb,#7c5cff);border-color:#60a5fa;color:#fff}.iua-hint{color:#9aa7c2;font-size:.85rem;margin:8px 0}');
   document.head.appendChild(css);
   var fab=el('button',{id:'iua-fab',type:'button'},'🎓 شهادة الإتمام بتاعتك');
-  var ov=el('div',{id:'iua-ov'});
+  var ov=el('div',{id:'iua-ov',role:'dialog','aria-modal':'true','aria-label':'Certificate'});
   ov.innerHTML='<div id="iua-box"><h3>🎓 مبروك! خلصت ١٠٠٪ من الكورس</h3>'+
    '<label for="iua-name">اكتب اسمك زي ما تحب يظهر على الشهادة</label><input id="iua-name" maxlength="40" autocomplete="name" placeholder="Your name / اسمك">'+
    '<canvas id="iua-cv" width="1600" height="1131"></canvas>'+
@@ -26,11 +26,11 @@
    '<a class="iua-b" id="iua-li" target="_blank" rel="noopener">أضفها على LinkedIn</a><a class="iua-b" id="iua-sh" target="_blank" rel="noopener">شارك بوست على LinkedIn</a><button class="iua-b" id="iua-x" type="button">إغلاق</button></div>'+
    '<p class="iua-hint">الشهادة بتتعمل جوه المتصفح بتاعك واسمك مش بيتبعت لأي سيرفر.</p></div>';
   function mount(){document.body.appendChild(fab);document.body.appendChild(ov);bind();watch()}
-  var logo=new Image();logo.crossOrigin='anonymous';logo.src=LOGO;
+  var logo=new Image();logo.crossOrigin='anonymous';logo.onload=function(){if(ov.style.display==='flex')render()};logo.src=LOGO;
   function rnd(seed){var s=seed;return function(){s=(s*1664525+1013904223)%4294967296;return s/4294967296}}
   function hash(str){var h=2166136261;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0)}
   function certId(name,date){var a=hash(slug+'|'+name+'|'+date).toString(36).toUpperCase().padStart(7,'0').slice(-7);var b=hash(date+name+slug).toString(36).toUpperCase().padStart(4,'0').slice(-4);var p=slug.replace('-from-zero','').replace(/[^a-z]/g,'').slice(0,4).toUpperCase();return 'IUA-'+p+'-'+a+b}
-  function dateStr(){var d=get(KD);if(!d){d=new Date().toISOString().slice(0,10);set(KD,d)}return d}
+  function dateStr(){var d=get(KD);if(!d){var n=new Date(),z=function(x){return (x<10?'0':'')+x};d=n.getFullYear()+'-'+z(n.getMonth()+1)+'-'+z(n.getDate());set(KD,d)}return d}
   function pretty(d){var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],p=d.split('-');return +p[2]+' '+m[+p[1]-1]+' '+p[0]}
   function glow(c,x,y,r,col){var g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.fillRect(0,0,1600,1131)}
   function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
@@ -84,14 +84,16 @@
     var x=len;var t='xref\n0 6\n0000000000 65535 f \n';for(var n=1;n<=5;n++)t+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
     add(enc(t+'trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF'));
     var out=new Uint8Array(len),p=0;parts.forEach(function(u){out.set(u,p);p+=u.length});dl(new Blob([out],{type:'application/pdf'}),fname('pdf'))}
-  function render(){var n=document.getElementById('iua-name').value;set(KN,n);draw(n);links(n.trim()||'Your Name')}
-  function open(){ov.style.display='flex';var i=document.getElementById('iua-name');i.value=get(KN)||'';var go=function(){render()};
+  function render(){var n=document.getElementById('iua-name').value;document.getElementById('iua-name').style.borderColor='';set(KN,n);draw(n);links(n.trim()||'Your Name')}
+  function shut(){ov.style.display='none';document.documentElement.style.overflow=''}
+  function open(){ov.style.display='flex';document.documentElement.style.overflow='hidden';var i=document.getElementById('iua-name');i.value=get(KN)||'';var go=function(){render()};
     (document.fonts&&document.fonts.load?Promise.all([document.fonts.load('700 80px Cairo'),document.fonts.load('400 24px Cairo'),document.fonts.load('800 84px Cairo')]).then(go,go):go());if(!i.value)i.focus()}
-  function bind(){fab.onclick=open;document.getElementById('iua-x').onclick=function(){ov.style.display='none'};
-    ov.addEventListener('click',function(e){if(e.target===ov)ov.style.display='none'});
+  function need(){var i=document.getElementById('iua-name');if(i.value.trim())return true;i.style.borderColor='#f87171';i.focus();return false}
+  function bind(){fab.onclick=open;document.getElementById('iua-x').onclick=shut;document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.style.display==='flex')shut()});
+    ov.addEventListener('click',function(e){if(e.target===ov)shut()});
     document.getElementById('iua-name').addEventListener('input',render);
-    document.getElementById('iua-png').onclick=function(){document.getElementById('iua-cv').toBlob(function(b){dl(b,fname('png'))},'image/png')};
-    document.getElementById('iua-pdf').onclick=pdf}
+    document.getElementById('iua-png').onclick=function(){if(!need())return;document.getElementById('iua-cv').toBlob(function(b){dl(b,fname('png'))},'image/png')};
+    document.getElementById('iua-pdf').onclick=function(){if(need())pdf()}}
   function check(){var t=document.getElementById('progress-text');if(!t)return;var done=t.textContent.trim().replace('٪','%')==='100%';
     if(done){if(!get(KD))dateStr();set('iua-cert-ok-'+slug,'1');fab.style.display='flex'}else if(!get('iua-cert-ok-'+slug)){fab.style.display='none'}}
   function watch(){var t=document.getElementById('progress-text');if(!t)return;check();new MutationObserver(check).observe(t,{childList:true,characterData:true,subtree:true})}
