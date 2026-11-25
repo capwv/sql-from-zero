@@ -370,9 +370,9 @@ CURRICULUM.push(
       { text: 'في صور وملفات PDF' }
     ], answer: 0, explain: 'الجداول هي الوحدة الأساسية: الأعمدة بتوصف البيانات والصفوف هي السجلات.' },
     { q: 'SQL بتستخدم في إيه؟', options: [
-      { text: 'تصميم المواقع والصفحات' },
+      { text: 'تصميم المواقع والصفحات وتنسيق شكلها على المتصفح' },
       { text: 'الكلام مع قاعدة البيانات: استعلام وإضافة وتعديل ومسح' },
-      { text: 'رسم الجرافيكس والداشبوردز' }
+      { text: 'رسم الجرافيكس والداشبوردز وتحويل الداتا لرسومات بيانية' }
     ], answer: 1, explain: 'SQL لغة استعلامات، وظيفتها إنك تطلب من قاعدة البيانات اللي محتاجه بالظبط.' },
     { q: 'في جدول employees، الصف الواحد بيمثل إيه؟', options: [
       { text: 'عمود واحد من البيانات' },
@@ -420,9 +420,9 @@ CURRICULUM.push(
       { text: 'امسح الجدول' }
     ], answer: 1, explain: '* اختصار لكل الأعمدة الموجودة في الجدول.' },
     { q: 'إيه وظيفة AS في الاستعلام ده؟', code: 'SELECT salary * 12 AS yearly_salary\nFROM employees;', options: [
-      { text: 'بتغير اسم العمود في قاعدة البيانات نفسها' },
+      { text: 'بتغير اسم العمود في قاعدة البيانات نفسها بشكل دايم لكل الجداول' },
       { text: 'بتديل العمود الناتج اسم مؤقت في النتيجة بس' },
-      { text: 'بتحفظ النتيجة في جدول جديد' }
+      { text: 'بتحفظ النتيجة في جدول جديد جوه القاعدة بالاسم اللي بتكتبه' }
     ], answer: 1, explain: 'AS بتعمل اسم مستعار (Alias) بيظهر في النتيجة بس، الجدول الأصلي بيفضل زي ما هو.' },
     { q: 'عايز قائمة بالمدن اللي فيها موظفين من غير تكرار. أستخدم إيه؟', options: [
       { text: 'SELECT city FROM employees;', mono: true },
@@ -534,9 +534,9 @@ CURRICULUM.push(
       { text: 'أقل 2 مرتبات في الشركة كلها' }
     ], answer: 1, explain: 'الترتيب: الأول WHERE يفلتر لموظفي القاهرة (Ahmed و Omar و Khaled)، بعدها يترتبوا تنازلي، وبعدين LIMIT ياخد أول 2: Khaled ثم Ahmed.' },
     { q: 'فيه استعلام مكتوب كده، فيه إيه غلط؟', code: 'SELECT name\nFROM employees\nORDER BY salary\nWHERE salary > 5000;', options: [
-      { text: 'مفيش غلط، شغال عادي' },
+      { text: 'مفيش غلط، الاستعلام شغال عادي وهيرجع النتيجة المطلوبة بالترتيب' },
       { text: 'WHERE مكانها قبل ORDER BY مش بعده' },
-      { text: 'ORDER BY محتاج كلمة DESC لازماً' }
+      { text: 'ORDER BY محتاج كلمة DESC لازماً عشان الاستعلام يتنفذ بنجاح' }
     ], answer: 1, explain: 'الترتيب الثابت: FROM ثم WHERE ثم ORDER BY. WHERE بعد ORDER BY خطأ نحوي.' }
   ],
   exercises: [
@@ -577,9 +577,9 @@ CURRICULUM.push(
       { text: 'MIDDLE(salary)', mono: true }
     ], answer: 1, explain: 'AVG اختصار Average وهي دالة المتوسط. مفيش دالة اسمها MIDDLE.' },
     { q: 'إيه الفرق بين COUNT(*) و COUNT(city)؟', options: [
-      { text: 'مفيش فرق، الاتنين نفس النتيجة دايماً' },
+      { text: 'مفيش فرق، الاتنين بيدوا نفس النتيجة دايماً مهما كانت الداتا' },
       { text: 'COUNT(city) مش بتحسب الصفوف اللي city فيها NULL' },
-      { text: 'COUNT(*) أسرع بس' }
+      { text: 'COUNT(*) أسرع بس، لكن الاتنين بيدوا نفس العدد في أي جدول' }
     ], answer: 1, explain: 'COUNT(*) بتحسب كل الصفوف، أما COUNT بعمود معين بتتجاهل قيم NULL في العمود ده.' },
     { q: 'الاستعلام ده هيرجع إيه؟', code: "SELECT SUM(salary)\nFROM employees\nWHERE department = 'Sales';", options: [
       { text: '48500' },
@@ -636,9 +636,9 @@ CURRICULUM.push(
       { text: 'SELECT ← FROM ← HAVING ← WHERE ← GROUP BY', mono: true }
     ], answer: 1, explain: 'WHERE الأول (تفلتر الصفوف)، بعدها GROUP BY (يجمّع)، بعدها HAVING (يفلتر المجموعات).' },
     { q: 'ليه الاستعلام ده غلط؟', code: 'SELECT department, name, AVG(salary)\nFROM employees\nGROUP BY department;', options: [
-      { text: 'مفيش غلط' },
+      { text: 'مفيش غلط، الاستعلام سليم وهيرجع النتيجة مجمعة حسب العمود' },
       { text: 'name مش في GROUP BY ومش جوه دالة تجميعية' },
-      { text: 'AVG مينفعش مع GROUP BY' }
+      { text: 'AVG مينفعش تتستخدم مع GROUP BY وبتحتاج HAVING بدالها' }
     ], answer: 1, explain: 'كل عمود في SELECT يا إما في GROUP BY يا إما جوه دالة تجميعية. name لا ده ولا ده، فقاعدة البيانات هترفض.' }
   ],
   exercises: [
@@ -691,13 +691,13 @@ CURRICULUM.push(
       { text: 'بتشغل الـ JOIN (زي زرار التشغيل)' }
     ], answer: 0, explain: 'ON بتحدد إزاي الصفوف بتتطابق: أي عمود في الجدول الأول بيقابل أنهي عمود في التاني.' },
     { q: 'ليه كتبنا e.name بدل name في أمثلة الـ JOIN؟', options: [
-      { text: 'عشان الكود يبقى أشيك' },
+      { text: 'عشان الكود يبقى أشيك وأسهل في القراءة من غير ما يغير النتيجة' },
       { text: 'عشان نحدد العمود جاي من أنهي جدول، خصوصاً لو فيه أعمدة بنفس الاسم' },
-      { text: 'لأن name محجوزة في SQL' }
+      { text: 'لأن name كلمة محجوزة في SQL ومينفعش تتكتب من غير اسم الجدول' }
     ], answer: 1, explain: 'مع أكتر من جدول لازم توضح مصدر كل عمود، والاسم المستعار (e, d) بيخلي الكود أقصر وأسهل في القراية.' },
     { q: 'INNER JOIN بين employees (5 صفوف) و departments (3 صفوف) هيرجع:', options: [
-      { text: '5 صفوف دايماً' },
-      { text: '3 صفوف دايماً' },
+      { text: '5 صفوف دايماً لأن INNER JOIN بيرجع كل صفوف الجدول الأول' },
+      { text: '3 صفوف دايماً لأن INNER JOIN بيرجع كل صفوف الجدول التاني' },
       { text: 'عدد الصفوف اللي ليها مطابق بس، حسب بيانات الربط' }
     ], answer: 2, explain: 'INNER JOIN بيرجع بس الصفوف اللي شرط ON بيتحقق فيها. العدد بيعتمد على البيانات، مش على حجم الجدولين.' }
   ],
@@ -729,19 +729,19 @@ CURRICULUM.push(
   ],
   quiz: [
     { q: 'في المثال الأول، إيه اللي بيحصل أولاً؟', code: 'SELECT name FROM employees\nWHERE salary > (SELECT AVG(salary) FROM employees);', options: [
-      { text: 'الاستعلام الخارجي بيشتغل الأول' },
+      { text: 'الاستعلام الخارجي بيشتغل الأول وبعدين نتيجته بتتحط في الداخلي' },
       { text: 'الاستعلام الداخلي (حساب المتوسط) بيشتغل الأول ونتيجته بتتحط في الشرط' },
-      { text: 'الاتنين بيشتغلوا في نفس اللحظة' }
+      { text: 'الاتنين بيشتغلوا في نفس اللحظة وبيتقارنوا ببعض أثناء التنفيذ' }
     ], answer: 1, explain: 'قاعدة البيانات بتحل الـ subquery الأول، وبعدين تستخدم ناتجها في الاستعلام الخارجي كأنها رقم ثابت.' },
     { q: 'Subquery جوه IN لازم ترجع:', options: [
-      { text: 'صف واحد بس' },
+      { text: 'صف واحد بس لأن IN بتقارن بقيمة واحدة في كل مرة' },
       { text: 'عمود واحد (بأي عدد صفوف)' },
-      { text: 'جدول كامل بكل أعمدته' }
+      { text: 'جدول كامل بكل أعمدته عشان IN تقارن بكل القيم مع بعض' }
     ], answer: 1, explain: 'IN بتقارن بقائمة قيم، فالـ subquery لازم ترجع عمود واحد. عدد الصفوف عادي، ممكن تكون فاضية أصلاً.' },
     { q: 'إيه ميزة CTE (WITH) على الـ subquery العادية؟', options: [
-      { text: 'أسرع في التنفيذ دايماً' },
+      { text: 'أسرع في التنفيذ دايماً لأن القاعدة بتحفظ نتيجتها في الذاكرة' },
       { text: 'بتخلي الاستعلامات المتداخلة أسهل في القراية والتنظيم، وتقدر تستدعيها باسمها' },
-      { text: 'الوحيدة اللي بتشتغل مع GROUP BY' }
+      { text: 'الوحيدة اللي بتشتغل مع GROUP BY في الاستعلامات المتداخلة' }
     ], answer: 1, explain: 'الـ CTE بتديل اسم لكل جزء من المنطق، فالكود بيبقى مقروء. الأداء غالباً واحد، لكن قابلية القراية فرق ضخم في الشغل الجماعي.' }
   ],
   exercises: [
@@ -783,14 +783,14 @@ CURRICULUM.push(
   ],
   quiz: [
     { q: 'إيه الفرق الأساسي بين GROUP BY و Window Function؟', options: [
-      { text: 'مفيش فرق' },
+      { text: 'مفيش فرق وظيفي بينهم، الاتنين بيدمجوا الصفوف بنفس الطريقة' },
       { text: 'GROUP BY بتدمج الصفوف في صف واحد لكل مجموعة، والـ Window Function بتحسب على المجموعة بس بتسيب كل الصفوف زي ما هي' },
-      { text: 'Window Functions أسرع دايماً' }
+      { text: 'Window Functions أسرع دايماً من GROUP BY في الجداول الكبيرة والصغيرة' }
     ], answer: 1, explain: 'ده الفرق الجوهري: AVG مع GROUP BY بترجع صف واحد لكل قسم، أما AVG() OVER (PARTITION BY ...) بترجع المتوسط جنب كل صف أصلي.' },
     { q: 'عايز أرقّم موظفي كل قسم من 1 حسب المرتب تنازلياً. أنهي صيغة صح؟', options: [
       { text: 'ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC)', mono: true },
-      { text: 'ROW_NUMBER() OVER (GROUP BY department)', mono: true },
-      { text: 'ROW_NUMBER(PARTITION department)', mono: true }
+      { text: 'ROW_NUMBER() OVER (GROUP BY department ORDER BY salary DESC)', mono: true },
+      { text: 'ROW_NUMBER(PARTITION department ORDER BY salary DESC) من غير OVER', mono: true }
     ], answer: 0, explain: 'جوه OVER بنحط PARTITION BY (الفئة) و ORDER BY (الترتيب جوه الفئة). مفيش GROUP BY جوه OVER.' },
     { q: 'موظفين مرتبهم واحد وترتيبهم بالـ RANK() طلع 2 و 2. اللي بعدهم هيبقى رقم كام؟', options: [
       { text: '3' },
@@ -848,19 +848,19 @@ CURRICULUM.push(
   ],
   quiz: [
     { q: 'أول حاجة تعملها لما تنزل داتا جديدة هي:', options: [
-      { text: 'أكتب أعقد استعلام أعرفه' },
+      { text: 'أكتب أعقد استعلام أعرفه عشان أختبر الداتا وأشوف كل الإمكانيات' },
       { text: 'أستكشف الداتا: أشوف شكلها، أعد القيم الفاضية، وأدور على التكرار' },
-      { text: 'أرفعها على GitHub على طول' }
+      { text: 'أرفعها على GitHub على طول عشان تتحفظ قبل أي تعديل عليها' }
     ], answer: 1, explain: 'التحليل على داتا مش متفحصة بيطلع نتايج غلط بثقة. الفحص الأول دايماً.' },
     { q: 'إيه اللي يخلي مشروع SQL على GitHub يبان محترف؟', options: [
-      { text: 'عدد ملفات الـ SQL الكبير' },
+      { text: 'عدد ملفات الـ SQL الكبير اللي بيبين إنك اشتغلت على استعلامات كتير' },
       { text: 'README واضح يحكي: الأسئلة، الطريقة، والنتايج بالأرقام، مع استعلامات منظمة ومتعلقة' },
-      { text: 'استخدام أعقد دوال ممكنة حتى لو مش لازم' }
+      { text: 'استخدام أعقد دوال ممكنة حتى لو مش لازمة، عشان تبين مهارتك للي بيراجع' }
     ], answer: 1, explain: 'اللي بيقرأ المشروع عايز يفهم تفكيرك. الوضوح والتنظيم بيفرقوا أكتر من تعقيد الكود.' },
     { q: 'ليه نكتب النتيجة في جملة بالأرقام بعد كل استعلام؟', options: [
-      { text: 'عشان نملى الملف' },
+      { text: 'عشان نملى الملف بكلام أكتر ويبان إن المشروع كبير ومتكامل' },
       { text: 'لأن الجملة دي هي التحليل نفسه: الاستعلام أداة، والرقم في سياقه هو القيمة اللي بتهم أي حد بيقرأ' },
-      { text: 'مفيش سبب، عادة وخلاص' }
+      { text: 'مفيش سبب فعلي، مجرد عادة عند ناس كتير ومتغيرش قيمة التحليل' }
     ], answer: 1, explain: 'الفرق بين حد بيشغل SQL وحد بيحلل بيانات هو الترجمة من أرقام لقرارات.' }
   ],
   exercises: [
@@ -884,7 +884,7 @@ c("CREATE TABLE departments (\n  dept_name TEXT PRIMARY KEY,\n  manager TEXT NOT
 p('العلاقة هنا واحد لمتعدد: قسم واحد له موظفين كتير. لو خزنت اسم المدير مع كل موظف هتكرر نفس المعلومة وممكن تحدثها في صف وتنسى صف. فصل الجداول يقلل المشكلة دي. في متجر حقيقي العلاقة بين الطلبات والمنتجات متعدد لمتعدد وبتحتاج جدول تفاصيل order_items.'),
 p('SQLite مرن في الأنواع، فمش كل نوع مكتوب هيفرض نفس القواعد اللي PostgreSQL بيفرضها. وتفعيل المفاتيح الخارجية محتاج PRAGMA foreign_keys = ON لكل اتصال. معملنا بيفعلها.'),
 h('طريقة المذاكرة'),p('اقرأ المثال، توقع النتيجة، وبعدها شغله. اكتب إجابتك في كل تمرين قبل ما تكشف الحل، وقارن النتيجة مش شكل الكتابة بس. لو الناتج غلط، راجع الأعمدة والأسماء والفلترة خطوة خطوة.')
-],[q('إيه اللي يميز صف الموظف حتى لو فيه اتنين اسمهم Ahmed؟',['name','id كمفتاح أساسي','city'],1,'الاسم ممكن يتكرر، المفتاح الأساسي لازم يكون فريد وغير NULL.'),q('ليه نفصل بيانات القسم عن الموظفين؟',['عشان نقلل تكرار المعلومات وتعارض التعديلات','عشان نزود عدد الجداول وخلاص','SQL لا تقبل جدول كبير'],0,'التصميم حسب الكيانات والعلاقات يخلي كل حقيقة مخزنة في مكان مناسب.')],[ex('اعمل جدول منتجات بمفتاح ورقم سعر غير سالب', 'CREATE TABLE products (\n  product_id INTEGER PRIMARY KEY,\n  product_name TEXT NOT NULL,\n  price REAL CHECK (price >= 0)\n);','حددنا المفتاح ونوع كل عمود وقيد للسعر.')]);
+],[q('إيه اللي يميز صف الموظف حتى لو فيه اتنين اسمهم Ahmed؟',['name','id كمفتاح أساسي','city'],1,'الاسم ممكن يتكرر، المفتاح الأساسي لازم يكون فريد وغير NULL.'),q('ليه نفصل بيانات القسم عن الموظفين؟',['عشان نقلل تكرار المعلومات وتعارض التعديلات','عشان نزود عدد الجداول في القاعدة وخلاص من غير فايدة فعلية','لأن SQL مش بتقبل جدول كبير فيه أكتر من 10 أعمدة'],0,'التصميم حسب الكيانات والعلاقات يخلي كل حقيقة مخزنة في مكان مناسب.')],[ex('اعمل جدول منتجات بمفتاح ورقم سعر غير سالب', 'CREATE TABLE products (\n  product_id INTEGER PRIMARY KEY,\n  product_name TEXT NOT NULL,\n  price REAL CHECK (price >= 0)\n);','حددنا المفتاح ونوع كل عمود وقيد للسعر.')]);
 CURRICULUM.splice(1,0,setup);
 const tools=lesson('clean','CASE وتنضيف النصوص والتواريخ','حوّل البيانات الخام لأعمدة ينفع تتحلل',[
 h('CASE: لو الشرط ده يبقى كذا'),p('CASE تعبير بيرجع قيمة، مش بيغير الجدول. SQL بتراجع الشروط بالترتيب وتاخد أول شرط متحقق. لو مفيش تطابق ومفيش ELSE النتيجة NULL.'),c("SELECT name, salary,\n  CASE WHEN salary >= 12000 THEN 'High'\n       WHEN salary >= 8000 THEN 'Medium'\n       ELSE 'Entry' END AS salary_band\nFROM employees;"),
@@ -898,13 +898,13 @@ h('EXISTS والـ correlated subquery'),p('EXISTS بيسأل هل فيه أي �
 h('UNION و UNION ALL'),c("SELECT city AS place FROM employees\nUNION\nSELECT dept_name AS place FROM departments;"),p('ده مثال على ضم صفوف نتيجتين، مش ربط أعمدة زي JOIN. لازم عدد الأعمدة متساوي وأنواعها مناسبة. UNION يشيل التكرار، UNION ALL يحتفظ بكل الصفوف وأسرع غالباً لأنه مش بيزيل المكرر. اسأل هل إزالة التكرار مطلوبة فعلاً قبل ما تختار.'),
 h('Running total و Window frame'),c("SELECT name, hire_date, salary,\n SUM(salary) OVER (ORDER BY hire_date, id\n   ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_salary\nFROM employees ORDER BY hire_date, id;"),p('الـ frame بيحدد الصفوف الداخلة في الحساب لكل صف. هنا من أول الترتيب لحد الصف الحالي. كتابة ROWS صراحة ومعها مفتاح لكسر التعادل تمنع مفاجآت الـ frame الافتراضي مع القيم المتعادلة. ORDER BY داخل OVER مش بيضمن ترتيب العرض النهائي، حط ORDER BY خارجي لو محتاج ترتيب واضح.'),
 h('ثاني أعلى مرتب مختلف'),c("WITH r AS (\n SELECT name, department, salary,\n DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dr\n FROM employees\n) SELECT * FROM r WHERE dr = 2;"),p('ده مختلف عن ROW_NUMBER = 2: لو أعلى مرتب متكرر، DENSE_RANK يجيب ثاني قيمة مرتب مختلفة، أما ROW_NUMBER يجيب الصف الثاني وممكن يكون نفس أعلى مرتب. لازم تحدد معنى السؤال الأول.')
-],[q('فرق UNION ALL عن UNION؟',['بيحتفظ بالتكرار','يشيل التكرار','يربط الجداول بأعمدة'],0,'UNION ALL يضم الصفوف كلها، و UNION يزيل الصفوف المتطابقة.'),q('هل ORDER BY جوه OVER كافي لترتيب العرض النهائي؟',['أيوه دايماً','لأ، حط ORDER BY للاستعلام الخارجي','مفيش ترتيب في SQL'],1,'ترتيب حساب النافذة مستقل عن ترتيب عرض النتيجة.')],[ex('اعرض الأقسام اللي مفيهاش موظفين باستخدام NOT EXISTS',"SELECT d.dept_name FROM departments d\nWHERE NOT EXISTS (SELECT 1 FROM employees e\n                  WHERE e.department = d.dept_name);",'مفيش تضاعف صفوف، ومش نفس فخ NOT IN مع NULL.'),ex('اعرض المرتب التراكمي بترتيب id',"SELECT id, name, SUM(salary) OVER (\n ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n) AS running_total FROM employees ORDER BY id;",'اختيار frame واضح يخلي كل صف يضيف مرتبه على اللي قبله.')]);
+],[q('فرق UNION ALL عن UNION؟',['بيحتفظ بالتكرار','يشيل التكرار','يربط الجداول بأعمدة'],0,'UNION ALL يضم الصفوف كلها، و UNION يزيل الصفوف المتطابقة.'),q('هل ORDER BY جوه OVER كافي لترتيب العرض النهائي؟',['أيوه دايماً، لأن الـ ORDER BY جوه OVER بيرتب العرض النهائي كمان','لأ، حط ORDER BY للاستعلام الخارجي','مفيش ترتيب مضمون في SQL أصلاً حتى لو كتبنا ORDER BY بره'],1,'ترتيب حساب النافذة مستقل عن ترتيب عرض النتيجة.')],[ex('اعرض الأقسام اللي مفيهاش موظفين باستخدام NOT EXISTS',"SELECT d.dept_name FROM departments d\nWHERE NOT EXISTS (SELECT 1 FROM employees e\n                  WHERE e.department = d.dept_name);",'مفيش تضاعف صفوف، ومش نفس فخ NOT IN مع NULL.'),ex('اعرض المرتب التراكمي بترتيب id',"SELECT id, name, SUM(salary) OVER (\n ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n) AS running_total FROM employees ORDER BY id;",'اختيار frame واضح يخلي كل صف يضيف مرتبه على اللي قبله.')]);
 const writes=lesson('writes','إنشاء وتعديل وأمان وأداء','اعرف تعمل تغييرات، لكن اتدرب على نسخة قبل بيانات الشغل',[
 h('INSERT و UPDATE و DELETE'),c("CREATE TABLE practice (id INTEGER PRIMARY KEY, name TEXT, score REAL);\nINSERT INTO practice (id, name, score) VALUES (1, 'Ahmed', 70), (2, 'Sara', 90);\nSELECT * FROM practice;\nUPDATE practice SET score = score + 5 WHERE id = 1;\nDELETE FROM practice WHERE id = 2;\nSELECT * FROM practice;"),p('UPDATE من غير WHERE يغير كل الصفوف، و DELETE من غير WHERE يمسح كل الصفوف. قبل أي تغيير شغل SELECT بنفس شرط WHERE، راجع عدد الصفوف وخد نسخة احتياطية. DROP TABLE يمسح الجدول نفسه، متجربوش على بيانات مهمة.'),
 h('Transactions: مجموعة تغييرات كوحدة واحدة'),c("BEGIN TRANSACTION;\nUPDATE employees SET salary = salary + 100 WHERE id = 1;\nSELECT * FROM employees WHERE id = 1;\nROLLBACK;\n-- COMMIT بدلاً من ROLLBACK لحفظ التغييرات لما تتأكد"),p('ROLLBACK يرجع التغييرات غير المحفوظة في transaction، و COMMIT يثبتها. ده مش بديل للنسخ الاحتياطي ومش بيرجع تغيير اتعمله COMMIT بالفعل.'),
 h('Views و Indexes'),c("CREATE VIEW department_summary AS\nSELECT department, COUNT(*) AS people, AVG(salary) AS avg_salary\nFROM employees GROUP BY department;\nSELECT * FROM department_summary;\n\nCREATE INDEX idx_employee_department ON employees(department);\nEXPLAIN QUERY PLAN SELECT * FROM employees WHERE department = 'IT';"),p('View استعلام محفوظ، مش بالضرورة نسخة مخزنة من البيانات. Index هيكل يساعد البحث والربط والترتيب لكنه بيستهلك مساحة وبيزود تكلفة الكتابة. مش أي استعلام بطيء يتحل بإنشاء index عشوائي: بص على خطة التنفيذ وقيس على حجم بيانات مناسب. جدولنا الصغير مش مقياس أداء.'),
 h('SQL injection'),p('لما برنامج يستقبل اسم أو بحث من مستخدم، متجمعش النص داخل SQL مباشرة. استخدم parameters من مكتبة قاعدة البيانات. في Python sqlite3 مثلاً: cursor.execute("SELECT * FROM employees WHERE name = ?", (name,)). القيمة بتتبعت كبيانات مش كود. معمل الموقع بيشغل استعلامك في جهازك فقط ومش متصل بأي حساب أو قاعدة حقيقية.')
-],[q('UPDATE employees SET salary = 0 من غير WHERE بيعمل إيه؟',['يغير أول موظف','يغير كل الموظفين','خطأ نحوي دايماً'],1,'من غير شرط كل الصفوف معرضة للتعديل.'),q('Index دايماً يحسن كل العمليات؟',['أيوه','لأ، له تكلفة مساحة وكتابة وبيعتمد على الاستعلام','بيمنع كل التكرار تلقائياً'],1,'اختار index حسب خطة تنفيذ وقياس، مش بالتخمين.')],[ex('زود مرتب الموظف 3 بمقدار 500 ثم ارجع التغيير للتدريب',"BEGIN;\nUPDATE employees SET salary = salary + 500 WHERE id = 3;\nSELECT * FROM employees WHERE id = 3;\nROLLBACK;",'راجع أثر التغيير قبل COMMIT.'),ex('اعمل view لموظفي القاهرة',"CREATE VIEW cairo_employees AS\nSELECT id, name, salary FROM employees WHERE city = 'Cairo';\nSELECT * FROM cairo_employees;",'الـ view اسم لاستعلام قابل لإعادة الاستخدام.')]);
+],[q('UPDATE employees SET salary = 0 من غير WHERE بيعمل إيه؟',['يغير أول موظف','يغير كل الموظفين','خطأ نحوي دايماً'],1,'من غير شرط كل الصفوف معرضة للتعديل.'),q('Index دايماً يحسن كل العمليات؟',['أيوه دايماً، لأنه بيسرّع القراءة والكتابة في أي استعلام على الجدول','لأ، له تكلفة مساحة وكتابة وبيعتمد على الاستعلام','بيمنع كل التكرار في الجدول تلقائياً ويحمي من القيم الغلط'],1,'اختار index حسب خطة تنفيذ وقياس، مش بالتخمين.')],[ex('زود مرتب الموظف 3 بمقدار 500 ثم ارجع التغيير للتدريب',"BEGIN;\nUPDATE employees SET salary = salary + 500 WHERE id = 3;\nSELECT * FROM employees WHERE id = 3;\nROLLBACK;",'راجع أثر التغيير قبل COMMIT.'),ex('اعمل view لموظفي القاهرة',"CREATE VIEW cairo_employees AS\nSELECT id, name, salary FROM employees WHERE city = 'Cairo';\nSELECT * FROM cairo_employees;",'الـ view اسم لاستعلام قابل لإعادة الاستخدام.')]);
 CURRICULUM.splice(CURRICULUM.findIndex(l=>l.id==='capstone'),0,advanced,writes);
 CURRICULUM.forEach((l,i)=>{l.title=l.title.replace(/^الدرس \d+: /,'');l.title='الدرس '+(i+1)+': '+l.title;});
 })();
@@ -941,7 +941,7 @@ c("WITH monthly AS (\n  SELECT strftime('%Y-%m', order_date) AS month, SUM(reven
 p('الـ frame هنا: الصف اللي قبل والحالي واللي بعد. النتيجة: يناير 16750 (متوسط شهرين بس لأن مفيش قبله)، فبراير 17033.33، مارس 14833.33، أبريل 12750. لاحظ إن المتوسط المتحرك أنعم من القيم الخام، وده اللي بيخلي الاتجاه أوضح في التقارير.'),
 h('NTILE: قسّم البيانات لشرائح متساوية'),
 c("SELECT order_id, product_name, revenue,\n  NTILE(4) OVER (ORDER BY revenue DESC) AS quartile\nFROM sales;"),
-p('NTILE(4) بيقسم الطلبات الـ 12 لأرباع: أعلى 3 طلبات (13000 و12500 و12000) في الربع الأول. سؤال إنترفيو كلاسيك: "هاتلي أعلى ربع طلبات" — وجاوبته بسطر واحد.'),
+p('NTILE(4) بيقسم الطلبات الـ 12 لأرباع: أعلى 3 طلبات (13000 و12500 و12000) في الربع الأول. سؤال إنترفيو كلاسيك: "هاتلي أعلى ربع طلبات", وجاوبته بسطر واحد.'),
 h('CUME_DIST: مكانك فين في التوزيع'),
 c("SELECT order_id, revenue,\n  ROUND(CUME_DIST() OVER (ORDER BY revenue), 2) AS cum_dist\nFROM sales;"),
 p('CUME_DIST بتقولك نسبة الطلبات اللي إيرادها أقل من أو يساوي الطلب ده. مثلاً طلب الـ Desk بـ 4500 نتيجته 0.67، يعني أكبر من حوالي 67% من الطلبات. مفيد لما عايز تقول "الطلب ده في أعلى كام في المية" من غير ما تعد بنفسك.'),
@@ -950,8 +950,8 @@ c("SELECT city, revenue,\n  ROW_NUMBER() OVER (PARTITION BY city ORDER BY revenu
 p('ركز على الجيزة: فيه طلبين بـ 2000 بالظبط. RANK بيديهم نفس الرقم (2 و2) وبيعمل فجوة بعدهم، DENSE_RANK بيديهم 2 و2 من غير فجوة، وROW_NUMBER بيدي واحد 2 والتاني 3 من غير سبب واضح. لو السؤال "أعلى 2 طلبات في كل مدينة"، تحديدك لمعنى التعادل هو اللي يحدد الدالة الصح.')
 ],quiz:[
 q('المتوسط المتحرك لشهر مارس (شهر قبل وشهر بعد) بكام؟',['14833.33','17033.33','12750'],0,'(19000 + 17600 + 7900) ÷ 3 = 44500 ÷ 3 = 14833.33.'),
-q('مدينة فيها طلبين بنفس الإيراد. لو استخدمت RANK هياخدوا إيه؟',['رقمين مختلفين بالترتيب','نفس الرقم، والترتيب اللي بعدهم يتخطى رقم','نفس الرقم من غير أي فجوة'],1,'RANK بتدي المتعادلين نفس الرقم وبعدين تعمل فجوة. DENSE_RANK نفس الرقم من غير فجوة.'),
-q('ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING معناها إيه؟',['أول صف لحد آخر صف','الصف الحالي بس','الصف اللي قبل والحالي واللي بعد'],2,'الـ frame بيحدد بالظبط الصفوف اللي بيدخل عليها الحساب لكل صف.')
+q('مدينة فيها طلبين بنفس الإيراد. لو استخدمت RANK هياخدوا إيه؟',['رقمين مختلفين بالترتيب، الأول 1 والتاني 2 حسب ظهورهم','نفس الرقم، والترتيب اللي بعدهم يتخطى رقم','نفس الرقم من غير أي فجوة، والترتيب اللي بعدهم بيكمل عادي'],1,'RANK بتدي المتعادلين نفس الرقم وبعدين تعمل فجوة. DENSE_RANK نفس الرقم من غير فجوة.'),
+q('ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING معناها إيه؟',['من أول صف في الجدول لحد آخر صف فيه حسب الترتيب','الصف الحالي بس، من غير ما يحسب أي صف قبله أو بعده','الصف اللي قبل والحالي واللي بعد'],2,'الـ frame بيحدد بالظبط الصفوف اللي بيدخل عليها الحساب لكل صف.')
 ],exercises:[
 ex('احسب متوسط متحرك لكل 3 طلبات متتالية بترتيب التاريخ',"SELECT order_id, revenue,\n  ROUND(AVG(revenue) OVER (ORDER BY order_date, order_id\n    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING), 2) AS mov3\nFROM sales;",'راجع نفسك: ثاني طلب (2000) نتيجته (12000 + 2000 + 500) ÷ 3 = 4833.33. وضفنا order_id في الترتيب عشان يبقى متماسك لو يوم اتكرر.'),
 ex('اعرض أعلى طلبين إيراد في كل فئة (category)',"WITH ranked AS (\n  SELECT product_name, category, revenue,\n    ROW_NUMBER() OVER (PARTITION BY category ORDER BY revenue DESC) AS rn\n  FROM sales\n)\nSELECT * FROM ranked WHERE rn <= 2;",'الناتج: Tech فيها 13000 و12500، وFurniture فيها 5000 و4500. نفس نمط "أعلى N في كل مجموعة" اللي اتقال في درس DENSE_RANK، بس هنا كل منتج رقمه مختلف فمفيش تعادل.')
@@ -972,9 +972,9 @@ h('القاعدة الذهبية: قيس قبل ما تحسن'),
 p('متعملش indexes على كل الأعمدة "احتياطي". كل index بياكل مساحة وبيبطئ INSERT و UPDATE و DELETE، لأن القاعدة بتحدثه مع كل تغيير. الترتيب الصح: استعلام بطيء → EXPLAIN → فهم السبب → حل مُقاس. ولو الجدول صغير أصلاً، SCAN ممكن يكون أسرع من استخدام index.'),
 n('في الأنظمة الكبيرة زي PostgreSQL و SQL Server نفس المفاهيم: خطة تنفيذ (EXPLAIN)، وفهارس، وإحصائيات عن البيانات. الصيغة بتختلف شوية، الفكرة واحدة.')
 ],quiz:[
-q('EXPLAIN QUERY PLAN رجع SCAN sales. معناه إيه؟',['فيه خطأ في الاستعلام','القاعدة بتقرا الجدول كله صف صف','القاعدة بتستخدم index'],1,'SCAN يعني فحص كامل للجدول. على جدول صغير ده طبيعي ومقبول، على جدول ضخم ده إنذار.'),
+q('EXPLAIN QUERY PLAN رجع SCAN sales. معناه إيه؟',['فيه خطأ في الاستعلام ومحتاج تعدل الصيغة قبل ما يشتغل','القاعدة بتقرا الجدول كله صف صف','القاعدة بتستخدم index مناسب فبتوصل للصفوف من غير ما تقرا الجدول كله'],1,'SCAN يعني فحص كامل للجدول. على جدول صغير ده طبيعي ومقبول، على جدول ضخم ده إنذار.'),
 q('ليه WHERE strftime(\'%Y\', order_date) = \'2025\' ممكن يبطل index على order_date؟',['لأن strftime بطيئة كدالة','لأن الحساب على العمود بيجبر القاعدة تحسبه لكل صف بدل استخدام القيم المفهرسة','مفيش فرق، الاتنين واحد'],1,'الـ index مبني على القيم الخام. أول ما تحول العمود بدالة، القيمة اللي بتقارنها مش هي المفهرسة.'),
-q('أول خطوة صح لما تلاقي استعلام بطيء؟',['اعمل index على كل الأعمدة','شوف خطة التنفيذ وافهم السبب قبل أي تغيير','زود ذاكرة السيرفر'],1,'التخمين بيضيف تكلفة من غير ضمان. الخطة بتقولك فين الوقت بيضيع بالظبط.')
+q('أول خطوة صح لما تلاقي استعلام بطيء؟',['اعمل index على كل الأعمدة في الجدول وشوف السرعة اتحسنت ولا لأ','شوف خطة التنفيذ وافهم السبب قبل أي تغيير','زود ذاكرة السيرفر وشغل الاستعلام تاني وشوف الأداء بعد كده'],1,'التخمين بيضيف تكلفة من غير ضمان. الخطة بتقولك فين الوقت بيضيع بالظبط.')
 ],exercises:[
 ex('اعمل index على category وقارن خطة التنفيذ قبل وبعد',"EXPLAIN QUERY PLAN SELECT * FROM sales WHERE category = 'Tech';\nCREATE INDEX idx_sales_category ON sales(category);\nEXPLAIN QUERY PLAN SELECT * FROM sales WHERE category = 'Tech';",'أول EXPLAIN هيبين SCAN، والتاني SEARCH USING INDEX. شفت الفرق بعينك، دي أهم عادة في الدرس ده.'),
 ex('اكتب استعلام يجيب إجمالي إيراد 2025 بصيغة تحترم الـ index (نطاق تاريخ مش دالة)',"SELECT SUM(revenue) AS total_2025\nFROM sales\nWHERE order_date >= '2025-01-01' AND order_date < '2026-01-01';",'الناتج 59000 لأن كل الداتا في 2025. نفس النتيجة اللي كانت هتطلع بـ strftime، بس الصيغة دي scalable: على مليون صف هتستخدم الـ index.')
