@@ -1,10 +1,10 @@
 /* Infinity University Activity - completion certificate (shared by all *-from-zero academies) */
-(function(){var s=document.currentScript;if(!s||window.__iuaLoad)return;window.__iuaLoad=1;var a=document.createElement('script');a.src='https://capwv.github.io/SAMS-Compass/academy.js';a.setAttribute('data-slug',s.getAttribute('data-slug')||'');document.head.appendChild(a)})();
+(function(){var s=document.currentScript;if(!s||window.__iuaLoad)return;window.__iuaLoad=1;var a=document.createElement('script');a.src='https://capwv.github.io/SAMS-Hub/academy.js';a.setAttribute('data-slug',s.getAttribute('data-slug')||'');document.head.appendChild(a)})();
 (function(){
   var S=document.currentScript; if(!S||window.__iuaCert) return; window.__iuaCert=1;
   var slug=S.getAttribute('data-slug'), course=S.getAttribute('data-course');
   var site='https://capwv.github.io/'+slug+'/';
-  var LOGO='https://capwv.github.io/SAMS-Compass/assets/logo.webp';
+  var LOGO='https://capwv.github.io/SAMS-Hub/assets/logo.webp';
   var KD='iua-cert-done-'+slug, KN='iua-cert-name';
   function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
   function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
