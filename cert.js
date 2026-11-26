@@ -51,7 +51,7 @@
     c.fillStyle='#93c5fd';c.font='700 19px Cairo,sans-serif';if('letterSpacing' in c)c.letterSpacing='7px';c.fillText('INFINITY UNIVERSITY ACTIVITY',W/2+3,240);
     var tg=c.createLinearGradient(520,0,1080,0);tg.addColorStop(0,'#7dd3fc');tg.addColorStop(.5,'#60a5fa');tg.addColorStop(1,'#a78bfa');
     c.fillStyle=tg;c.font='800 84px Cairo,sans-serif';if('letterSpacing' in c)c.letterSpacing='8px';c.fillText('CERTIFICATE',W/2+4,345);
-    if('letterSpacing' in c)c.letterSpacing='2px';c.fillStyle='#cbd5e1';c.font='600 25px Cairo,sans-serif';c.fillText('OF COMPLETION  •  شهادة إتمام',W/2,395);
+    if('letterSpacing' in c)c.letterSpacing='2px';c.fillStyle='#cbd5e1';c.font='600 25px Cairo,sans-serif';c.fillText('OF COMPLETION',W/2,395);
     if('letterSpacing' in c)c.letterSpacing='0px';
     c.fillStyle='#94a3b8';c.font='400 22px Cairo,sans-serif';c.fillText('This certifies that',W/2,465);
     var fs=80;c.font='700 '+fs+'px Cairo,sans-serif';while(c.measureText(name).width>1000&&fs>34){fs-=4;c.font='700 '+fs+'px Cairo,sans-serif'}
@@ -60,7 +60,7 @@
     c.fillStyle='#94a3b8';c.font='400 24px Cairo,sans-serif';c.fillText('has successfully completed 100% of the course',W/2,660);
     var cf=50;c.font='700 '+cf+'px Cairo,sans-serif';while(c.measureText(course).width>1100&&cf>30){cf-=3;c.font='700 '+cf+'px Cairo,sans-serif'}
     c.fillStyle='#7dd3fc';c.fillText(course,W/2,725);
-    c.fillStyle='#e2e8f0';c.font='400 28px Cairo,sans-serif';c.direction='rtl';c.fillText('أتمّ بنجاح جميع دروس وتمارين الكورس بنسبة ١٠٠٪',W/2,785);c.direction='ltr';
+    c.fillStyle='#e2e8f0';c.font='400 28px Cairo,sans-serif';c.fillText('Every lesson and exercise completed in full',W/2,785);
     c.save();c.shadowColor='rgba(96,165,250,.55)';c.shadowBlur=50;c.beginPath();c.arc(235,856,85,0,7);c.fillStyle='#10172a';c.fill();c.restore();
     c.strokeStyle='#60a5fa';c.lineWidth=3;c.beginPath();c.arc(235,856,85,0,7);c.stroke();c.strokeStyle='rgba(125,211,252,.5)';c.lineWidth=1;c.beginPath();c.arc(235,856,74,0,7);c.stroke();
     c.fillStyle='#34d399';c.font='700 46px Cairo,sans-serif';c.fillText('100%',235,862);c.fillStyle='#93c5fd';c.font='400 13px Cairo,sans-serif';if('letterSpacing' in c)c.letterSpacing='3px';c.fillText('COMPLETE',237,888);
